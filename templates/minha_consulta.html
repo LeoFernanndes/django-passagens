@@ -2,13 +2,13 @@
 {% block content %}
 
 <h1>Resumo da consulta</h1>
-<p>Sua origem é {{ form.origem.value }}</p>
-<p>Seu destino é {{ form.destino.value }}</p>
-<p>Sua data de ida é {{ form.data_ida.value }}</p>
-<p>Sua data de retorno é {{ form.data_retorno.value }}</p>
-<p>Pesquisa realizada {{ form.data_pesquisa.value }}</p>
-<p>Classe do vôo {{ form.classe_viagem.value }}</p>
-<p>Informações adicionais {{ form.informacoes.value }}</p>
-<p>Email {{ form.email.value }}</p>
+<p>Sua origem é: {{ form.origem.value }}</p>
+<p>Seu destino é: {{ form.destino.value }}</p>
+<p>Sua data de ida é: {{ form.data_ida.value }}</p>
+<p>Sua data de retorno é: {{ form.data_retorno.value }}</p>
+<p>Classe do vôo: {{ form.classe_viagem.value }}</p>
+<p>Informações adicionais: {{ form.informacoes.value }}</p>
+<p>Email: {{ form.email.value }}</p>
+<p>Pesquisa realizada em {{ form.data_pesquisa.value }}</p>
 
 {% endblock %}

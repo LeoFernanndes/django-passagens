@@ -1,7 +1,9 @@
 from django import forms
+from django import forms
 from tempus_dominus.widgets import DatePicker
 from datetime import datetime
 from passagens.classe_viagem import tipos_de_classe
+from passagens.validation import *
 
 class PassagemForms(forms.Form):
     origem = forms.CharField(label='Origem', max_length=100, required=True)
@@ -18,9 +20,24 @@ class PassagemForms(forms.Form):
     )
     email = forms.CharField(max_length=100)
 
-    def clean_origem(self):
+
+    def clean(self):
         origem = self.cleaned_data.get('origem')
-        if any(char.isdigit() for char in origem):
-            raise forms.ValidationError("Não incluir valores numéricos no campo origem")
-        else:
-            return origem
+        destino = self.cleaned_data.get('destino')
+        data_ida = self.cleaned_data.get('data_ida')
+        data_retorno = self.cleaned_data.get('data_retorno')
+        data_pesquisa = self.cleaned_data.get('data_pesquisa')
+        lista_de_erros = {}
+
+        campo_tem_algum_numero(origem, 'origem', lista_de_erros)
+        campo_tem_algum_numero(destino, 'destino', lista_de_erros)
+        origem_destino_iguais(origem, destino, lista_de_erros)
+        data_ida_maior_que_data_retorno(data_ida, data_retorno, lista_de_erros)
+        data_ida_maior_que_hoje(data_ida, data_pesquisa, lista_de_erros)
+
+        if lista_de_erros is not None:
+            for erro in lista_de_erros:
+                mensagem_erro = lista_de_erros[erro]
+                self.add_error(erro, mensagem_erro)
+
+        return self.cleaned_data
