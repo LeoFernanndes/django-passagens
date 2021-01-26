@@ -1,7 +1,14 @@
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+{% extends 'base.html' %}
+{% block content %}
 
 <h1>Resumo da consulta</h1>
-<p>{{ form.origem.value }}</p>
+<p>Sua origem é {{ form.origem.value }}</p>
+<p>Seu destino é {{ form.destino.value }}</p>
+<p>Sua data de ida é {{ form.data_ida.value }}</p>
+<p>Sua data de retorno é {{ form.data_retorno.value }}</p>
+<p>Pesquisa realizada {{ form.data_pesquisa.value }}</p>
+<p>Classe do vôo {{ form.classe_viagem.value }}</p>
+<p>Informações adicionais {{ form.informacoes.value }}</p>
+<p>Email {{ form.email.value }}</p>
+
+{% endblock %}
